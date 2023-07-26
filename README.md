@@ -1,1 +1,1 @@
-# pokemoncollector
+# Pokemon Collector Django App
