@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Pokemon Details</h1>
+
+<!-- <div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ pokemon.name }}</span>
+        <p>Types: {{ pokemon.types }}</p>
+        <p>Rarity: {{ pokemon.rarity|linebreaks }}</p>
+        <p>Artist: {{ pokemon.artist }}</p>
+        <img class="responsive-img" src="{{ pokemon.img }}" />
+    </div>
+</div> -->
+<div class="center">
+    <div class="row">
+        <div class="col s5">
+            <div class="card large">
+                <div class="card-image sm-img">
+                    <img src="{{ pokemon.img }}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title">{{ pokemon.name }}</span>
+                    <p>Types: {{ pokemon.types }}</p>
+                    <p>Rarity: {{ pokemon.rarity }}</p>
+                    <p>Artist: {{ pokemon.artist }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="{% url 'pokemon_update' pokemon.id %}">Edit</a>
+                    <a href="{% url 'pokemon_delete' pokemon.id %}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

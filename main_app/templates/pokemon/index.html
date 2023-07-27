@@ -4,14 +4,16 @@
 <h1>Pokemon List</h1>
 
 {% for p in pokemon %}
-<div class="card">
-    <div class="card-content">
-        <span class="card-title">{{ p.name }}</span>
-        <p>Type: {{ p.types }}</p>
-        <p>Rarity: {{ p.rarity }}</p>
-        <p>Artist: {{ p.artist }}</p>
+<a href="{% url 'detail' p.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ p.name }}</span>
+            <p>Type: {{ p.types }}</p>
+            <p>Rarity: {{ p.rarity }}</p>
+            <p>Artist: {{ p.artist }}</p>
+        </div>
     </div>
-</div>
+</a>
 {% endfor %}
 
 {% endblock %}
