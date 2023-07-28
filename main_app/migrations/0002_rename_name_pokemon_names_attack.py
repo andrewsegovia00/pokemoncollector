@@ -5,22 +5,35 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('main_app', '0001_initial'),
+        ("main_app", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='pokemon',
-            old_name='name',
-            new_name='names',
+            model_name="pokemon",
+            old_name="name",
+            new_name="names",
         ),
         migrations.CreateModel(
-            name='Attack',
+            name="Attack",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('pokemon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main_app.pokemon')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "pokemon",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="main_app.pokemon",
+                    ),
+                ),
             ],
         ),
     ]

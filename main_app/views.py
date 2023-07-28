@@ -32,7 +32,7 @@ def add_attack(request, pokemon_id):
     form = AttackForm(request.POST)
     if form.is_valid():
         new_attack = form.save(commit=False)
-        new_attack.cat_id = pokemon_id
+        new_attack.pokemon_id = pokemon_id
         new_attack.save()
     return redirect("detail", pokemon_id=pokemon_id)
 
