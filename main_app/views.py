@@ -1,15 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Pokemon
-
-# pokemon = [
-#   {'name': 'Venusaur-EX', 'types': 'Grass', 'rarity': 'Rare Holo EX', 'artist': 'Eske Yoshinob', 'img': 'https://images.pokemontcg.io/xy1/1_hires.png'},
-#   {'name': 'Xerneas-EX', 'types': 'Fairy', 'rarity': 'Rare Ultra', 'artist': '5ban Graphics', 'img': 'https://images.pokemontcg.io/xy1/146_hires.png'},
-#   {'name': 'Charizard-EX', 'types': 'Fire', 'rarity': 'Rare Ultra', 'artist': 'Ryo Ueda', 'img': 'https://images.pokemontcg.io/xy2/100_hires.png'},
-#   {'name': 'M Lucario-EX', 'types': 'Fighting', 'rarity': 'Rare Holo EX', 'artist': '5ban Graphics', 'img': 'https://images.pokemontcg.io/xy3/55_hires.png'},
-#   {'name': 'Magnezone-EX', 'types': 'Lightning', 'rarity': 'Rare Ultra', 'artist': 'Ryo Ueda', 'img': 'https://images.pokemontcg.io/xy2/101_hires.png'},
-#   {'name': 'Toxicroak-EX', 'types': 'Psychic', 'rarity': 'Rare Ultra', 'artist': 'Ryo Ueda', 'img': 'https://images.pokemontcg.io/xy2/102_hires.png'},
-# ]
+from .forms import AttackForm
 
 
 # Create your views here.
@@ -27,9 +19,22 @@ def pokemon_index(request):
     return render(request, "pokemon/index.html", {"pokemon": pokemon})
 
 
-def pokemon_detail(request, cat_id):
-    pokemon = Pokemon.objects.get(id=cat_id)
-    return render(request, "pokemon/detail.html", {"pokemon": pokemon})
+def pokemon_detail(request, pokemon_id):
+    pokemon = Pokemon.objects.get(id=pokemon_id)
+    attack_form = AttackForm()
+
+    return render(
+        request, "pokemon/detail.html", {"pokemon": pokemon, "attack_form": attack_form}
+    )
+
+
+def add_attack(request, pokemon_id):
+    form = AttackForm(request.POST)
+    if form.is_valid():
+        new_attack = form.save(commit=False)
+        new_attack.cat_id = pokemon_id
+        new_attack.save()
+    return redirect("detail", pokemon_id=pokemon_id)
 
 
 class PokemonCreate(CreateView):
