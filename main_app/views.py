@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Pokemon
+from django.views.generic import ListView, DetailView
+from .models import Pokemon, BoosterPack
 from .forms import AttackForm
 
 
@@ -21,10 +22,19 @@ def pokemon_index(request):
 
 def pokemon_detail(request, pokemon_id):
     pokemon = Pokemon.objects.get(id=pokemon_id)
+
+    id_list = pokemon.BoosterPacks.all().values_list("id")
+    booster_pokemon_doesnt_have = BoosterPack.objects.exclude(id__in=id_list)
     attack_form = AttackForm()
 
     return render(
-        request, "pokemon/detail.html", {"pokemon": pokemon, "attack_form": attack_form}
+        request,
+        "pokemon/detail.html",
+        {
+            "pokemon": pokemon,
+            "attack_form": attack_form,
+            "boosterpacks": booster_pokemon_doesnt_have,
+        },
     )
 
 
@@ -53,3 +63,37 @@ class PokemonDelete(DeleteView):
     model = Pokemon
     fields = "__all__"
     success_url = "/pokemon/"
+
+
+class BoosterList(ListView):
+    model = BoosterPack
+
+
+class BoosterDetail(DetailView):
+    model = BoosterPack
+
+
+class BoosterCreate(CreateView):
+    model = BoosterPack
+    fields = "__all__"
+    success_url = "/boosterPacks/"
+
+
+class BoosterUpdate(UpdateView):
+    model = BoosterPack
+    fields = ["name", "year"]
+
+
+class BoosterDelete(DeleteView):
+    model = BoosterPack
+    success_url = "/boosterPacks"
+
+
+def assoc_booster(request, pokemon_id, booster_pack_id):
+    Pokemon.objects.get(id=pokemon_id).boosterPack.add(booster_pack_id)
+    return redirect("detail", pokemon_id=pokemon_id)
+
+
+def unassoc_booster(request, pokemon_id, booster_pack_id):
+    Pokemon.objects.get(id=pokemon_id).boosterPack.remove(booster_pack_id)
+    return redirect("detail", pokemon_id=pokemon_id)

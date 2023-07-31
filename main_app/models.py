@@ -16,12 +16,25 @@ TYPES = (
 )
 
 
+class BoosterPack(models.Model):
+    name = models.CharField(max_length=100)
+    year = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.name} ({self.year})"
+
+    def get_absolute_url(self):
+        return reverse("boosterpacks_detail", kwargs={"pk": self.id})
+
+
 class Pokemon(models.Model):
     names = models.CharField(max_length=100)
     types = models.CharField(max_length=100)
     rarity = models.CharField(max_length=100)
     artist = models.CharField(max_length=100)
     img = models.CharField(max_length=100)
+
+    BoosterPacks = models.ManyToManyField(BoosterPack)
 
     def __str__(self) -> str:
         return f"{self.names} ({self.id})"

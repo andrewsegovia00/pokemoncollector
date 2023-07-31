@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Booster List</h1>
+
+{% for booster in booster_list %}
+<a href="{% url 'boosterpacks_detail' booster.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ booster.name }}</span>
+            <p>Year: {{ booster.year }}</p>
+        </div>
+    </div>
+</a>
+{% endfor %}
+
+{% endblock %}

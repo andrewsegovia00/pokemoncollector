@@ -14,4 +14,25 @@ urlpatterns = [
         "pokemon/<int:pk>/delete/", views.PokemonDelete.as_view(), name="pokemon_delete"
     ),
     path("pokemon/<int:pokemon_id>/add_attack/", views.add_attack, name="add_attack"),
+    path("boosterPacks/", views.BoosterList.as_view(), name="boosterpacks_index"),
+    path(
+        "boosterPacks/<int:pk>/",
+        views.BoosterDetail.as_view(),
+        name="boosterpacks_detail",
+    ),
+    path(
+        "boosterPacks/create/",
+        views.BoosterCreate.as_view(),
+        name="boosterpacks_create",
+    ),
+    path(
+        "boosterPacks/<int:pk>/update/",
+        views.BoosterUpdate.as_view(),
+        name="boosterpacks_update",
+    ),
+    path(
+        "boosterPacks/<int:pk>/delete/",
+        views.BoosterDelete.as_view(),
+        name="boosterpacks_delete",
+    ),
 ]
