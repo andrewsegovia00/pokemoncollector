@@ -1,57 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- <h1>Pokemon Details</h1>
-<div class="row">
-    <div class="col s6">
-        <div class="row">
-            <div class="col s5">
-        <div class="card large">
-            <div class="card-image sm-img">
-                <img src="{{ pokemon.img }}">
-            </div>
-            <div class="card-content">
-                <span class="card-title">{{ pokemon.name }}</span>
-                <p>Types: {{ pokemon.types }}</p>
-                <p>Rarity: {{ pokemon.rarity }}</p>
-                <p>Artist: {{ pokemon.artist }}</p>
-            </div>
-            <div class="card-action">
-                <a href="{% url 'pokemon_update' pokemon.id %}">Edit</a>
-                <a href="{% url 'pokemon_delete' pokemon.id %}">Delete</a>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<div class="col s6">
-    <table class="striped">
-        <thead>
-            <tr>
-                <th>Attack</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Cost</th>
-                <th>Damage</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for feeding in cat.feeding_set.all %}
-            <tr>
-                <td>{{feeding.names}}</td>
-                <td>{{feeding.get_types_display}}</td>
-                <td>{{feeding.Description}}</td>
-                <td>{{feeding.cost}}</td>
-                <td>{{feeding.damage}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-</div>
- -->
-
-
 <div class="row">
     <div class="col s6">
         <!-- <div class="card"> -->
