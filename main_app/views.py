@@ -23,7 +23,8 @@ def pokemon_index(request):
 def pokemon_detail(request, pokemon_id):
     pokemon = Pokemon.objects.get(id=pokemon_id)
 
-    id_list = pokemon.BoosterPacks.all().values_list("id")
+    id_list = pokemon.boosterpacks.all().values_list("id")
+
     booster_pokemon_doesnt_have = BoosterPack.objects.exclude(id__in=id_list)
     attack_form = AttackForm()
 

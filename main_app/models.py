@@ -34,7 +34,7 @@ class Pokemon(models.Model):
     artist = models.CharField(max_length=100)
     img = models.CharField(max_length=100)
 
-    BoosterPacks = models.ManyToManyField(BoosterPack)
+    boosterpacks = models.ManyToManyField(BoosterPack)
 
     def __str__(self) -> str:
         return f"{self.names} ({self.id})"

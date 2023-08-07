@@ -3,6 +3,7 @@
 
 <h1>Booster List</h1>
 
+<h1>{{ boosterpacks }}</h1>
 {% for booster in booster_list %}
 <a href="{% url 'boosterpacks_detail' booster.id %}">
     <div class="card">
